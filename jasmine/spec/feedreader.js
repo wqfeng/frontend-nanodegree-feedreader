@@ -34,7 +34,7 @@ $(function() {
         it('URL is defined and not empty', function(){
             allFeeds.forEach(function(feed){
                 expect(feed.url).toBeDefined();
-                expect(feed.url).not.toEqual("");
+                expect(feed.url).not.toEqual('');
             });
          });
 
@@ -46,7 +46,7 @@ $(function() {
         it('name is defined and not empty', function(){
             allFeeds.forEach(function(feed){
                 expect(feed.name).toBeDefined();
-                expect(feed.name).not.toEqual("");
+                expect(feed.name).not.toEqual('');
             });
         });
     });
@@ -92,22 +92,21 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-        it('has some feeds', function(done){
+        it('has some feeds', function(){
             expect($('.feed .entry').length).toBeGreaterThan(0);
-            done();
         });
     });
 
     /* Write a new test suite named "New Feed Selection" */
     describe('New Feed Selection', function(){
 
-        var old_tilte, new_title;
+        var oldTitle, newTitle;
 
         beforeEach(function(done){
             loadFeed(0, function(){
-                old_tilte = $('.header-title').text();
+                oldTitle = $('.entry-link')[0];
                 loadFeed(1, function(){
-                    new_title = $('.header-title').text();
+                    newTitle = $('.entry-link')[0];
                     done();
                 });
             });
@@ -117,9 +116,8 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        it('the content is changed when a new feed is loaded', function(done){
-            expect(new_title).not.toBe(old_tilte);
-            done();
+        it('the content is changed when a new feed is loaded', function(){
+            expect(newTitle).not.toBe(oldTitle);
         });
     });
 
