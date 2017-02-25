@@ -104,9 +104,9 @@ $(function() {
 
         beforeEach(function(done){
             loadFeed(0, function(){
-                oldTitle = $('.entry-link')[0];
+                oldTitle = $('.entry-link')[0].text;
                 loadFeed(1, function(){
-                    newTitle = $('.entry-link')[0];
+                    newTitle = $('.entry-link')[0].text;
                     done();
                 });
             });
@@ -117,6 +117,8 @@ $(function() {
          * Remember, loadFeed() is asynchronous.
          */
         it('the content is changed when a new feed is loaded', function(){
+            // console.log(oldTitle);
+            // console.log(newTitle);
             expect(newTitle).not.toBe(oldTitle);
         });
     });
